@@ -13,6 +13,7 @@
      - name: Enable the Apache2 module wsgi
        ansible.builtin.apt:
           name: apache2
+          update_cache: true
      - name: Start apache
        ansible.builtin.service:
          name: apache2
