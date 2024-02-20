@@ -27,11 +27,15 @@
           state: absent
      - name: Replace default web page
        ansible.builtin.template:
-          src: /home/tux/hello_ansible/hello-mundo.html.j2
+          src: /home/tux/hello-ansible/hello-mundo.html.j2
           dest: /var/www/html/index.html
           owner: root
           group: root
           mode: '0644'
-         
+     - name: Install 2048
+       ansible.builtin.unarchive:
+          src: ~/Downloads/2048.tar.bz2
+          dest: /var/www/html
+          mode: '0777'
    
           
