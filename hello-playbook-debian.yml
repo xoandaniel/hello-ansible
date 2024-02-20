@@ -1,0 +1,42 @@
+%YAML 1.2
+---
+- name: UnNombreParaEsto
+  hosts: all
+  become: true
+  tasks:
+     - name: Example from an Ansible Playbook
+       ansible.builtin.ping:
+     - name: Print the gateway for each host when defined
+       ansible.builtin.debug:
+          msg: "{{ inventory_hostname }} - {{ ansible_default_ipv4.gateway }}"
+       when: ansible_default_ipv4.gateway is defined
+     - name: Enable the Apache2 module wsgi
+       ansible.builtin.apt:
+          name: apache2
+     - name: Start apache
+       ansible.builtin.service:
+         name: apache2
+         state: started
+         enabled: true
+     - name: Install mariadb
+       ansible.builtin.apt:
+          name: mariadb-server
+     - name: Uninstall htop
+       ansible.builtin.apt:
+          name: htop
+          state: absent
+     - name: Replace default web page
+       ansible.builtin.template:
+          src: /home/tux/hello-ansible/hello-mundo.html.j2
+          dest: /var/www/html/index.html
+          owner: root
+          group: root
+          mode: '0644'
+     - name: Install 2048
+       ansible.builtin.unarchive:
+          src: ~/Downloads/2048.tar.bz2
+          dest: /var/www/html
+          owner: root
+          group: root
+   
+          

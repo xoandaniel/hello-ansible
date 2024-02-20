@@ -1,7 +1,7 @@
 %YAML 1.2
 ---
 - name: UnNombreParaEsto
-  hosts: all
+  hosts: redhat
   become: true
   tasks:
      - name: Example from an Ansible Playbook
@@ -10,19 +10,19 @@
        ansible.builtin.debug:
           msg: "{{ inventory_hostname }} - {{ ansible_default_ipv4.gateway }}"
        when: ansible_default_ipv4.gateway is defined
-     - name: Enable the Apache2 module wsgi
-       ansible.builtin.apt:
-          name: apache2
+     - name: Enable the Apache2
+       ansible.builtin.yum:
+          name: httpd
      - name: Start apache
        ansible.builtin.service:
-         name: apache2
+         name: httpd
          state: started
          enabled: true
      - name: Install mariadb
-       ansible.builtin.apt:
+       ansible.builtin.yum:
           name: mariadb-server
      - name: Uninstall htop
-       ansible.builtin.apt:
+       ansible.builtin.yum:
           name: htop
           state: absent
      - name: Replace default web page
@@ -36,6 +36,7 @@
        ansible.builtin.unarchive:
           src: ~/Downloads/2048.tar.bz2
           dest: /var/www/html
-          mode: '0777'
+          owner: root
+          group: root
    
           
