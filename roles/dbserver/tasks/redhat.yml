@@ -1,0 +1,5 @@
+# roles/example/tasks/redhat.yml
+- name: Install dbserver
+  ansible.builtin.yum:
+    name: mariadb-server
+    state: present

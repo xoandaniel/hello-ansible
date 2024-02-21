@@ -1,0 +1,5 @@
+# roles/example/tasks/debian.yml
+- name: Install dbserver
+  ansible.builtin.apt:
+    name: mariadb-server
+    state: present

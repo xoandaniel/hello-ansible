@@ -1,0 +1,10 @@
+# roles/example/tasks/main.yml
+- name: Install the correct dbserver for RHEL
+  import_tasks: redhat.yml
+  when: ansible_facts['os_family']|lower == 'redhat'
+
+- name: Install the correct dbserver for Debian
+  import_tasks: debian.yml
+  when: ansible_facts['os_family']|lower == 'debian'
+
+
