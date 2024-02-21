@@ -2,4 +2,5 @@
 - name: Install web server
   ansible.builtin.apt:
     name: apache2
+    update_cache: true
     state: present

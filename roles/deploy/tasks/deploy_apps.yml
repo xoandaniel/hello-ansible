@@ -1,0 +1,7 @@
+- name: Install 2048
+  ansible.builtin.unarchive:
+    src: "{{artifact}}"
+    dest: /var/www/html
+    owner: root
+    group: root
+   

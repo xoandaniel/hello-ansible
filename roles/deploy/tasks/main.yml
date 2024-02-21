@@ -1,0 +1,6 @@
+# roles/example/tasks/main.yml
+- name: Install apps
+  import_tasks: deploy_apps.yml
+  
+
+

@@ -3,3 +3,6 @@
   roles:
     - role: webserver
     - role: dbserver
+    - role: deploy
+      vars:
+         artifact: /home/tux/Downloads/2048.tar.bz2
