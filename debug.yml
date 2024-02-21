@@ -1,0 +1,12 @@
+- name: debugin 
+  hosts: all
+  tasks:
+        - name: Show facts
+          ansible.builtin.debug:
+                var: ansible_facts
+        - name: register variable
+          ansible.builtin.shell: cat /etc/motd
+          register: motd_contents
+        - name: dump motd
+          debug:
+            var: motd_contents

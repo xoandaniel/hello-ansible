@@ -1,0 +1,70 @@
+%YAML 1.2
+---
+- name: UnNombreParaEsto
+  hosts: all
+  become: true
+  tasks:
+     - name: Example from an Ansible Playbook
+       ansible.builtin.ping:
+
+     - name: Print the gateway for each host when defined
+       ansible.builtin.debug:
+          msg: "{{ inventory_hostname }} - {{ ansible_default_ipv4.gateway }}"
+       when: ansible_default_ipv4.gateway is defined
+
+     - name: Enable the Apache en Debian
+       ansible.builtin.apt:
+          name: apache2
+          update_cache: true
+       when: ansible_facts['os_family'] == 'Debian'
+
+     - name: Start apache en Debian
+       ansible.builtin.service:
+         name: apache2
+         state: started
+         enabled: true
+       when: ansible_facts['os_family']  == 'Debian'
+         
+     - name: Enable the Apache en RedHat
+       ansible.builtin.yum:
+          name: httpd
+       when: ansible_facts['os_family']  == 'RedHat'
+
+     - name: Start apache en RedHat
+       ansible.builtin.service:
+         name: httpd
+         state: started
+         enabled: true
+       when: ansible_facts['os_family']  == 'RedHat'
+
+     - name: Install mariadb Debian
+       ansible.builtin.apt:
+          name: mariadb-server
+       when: ansible_facts['os_family']  == 'Debian'
+
+     - name: Uninstall htop
+       ansible.builtin.apt:
+          name: htop
+          state: absent
+       when: ansible_facts['os_family']  == 'Debian'
+ 
+     - name: Install mariadb en RedHat
+       ansible.builtin.yum:
+          name: mariadb-server
+       when: ansible_facts['os_family']  == 'RedHat'
+   
+     - name: Replace default web page
+       ansible.builtin.template:
+          src: /home/tux/hello-ansible/hello-mundo.html.j2
+          dest: /var/www/html/index.html
+          owner: root
+          group: root
+          mode: '0644'
+
+     - name: Install 2048
+       ansible.builtin.unarchive:
+          src: ~/Downloads/2048.tar.bz2
+          dest: /var/www/html
+          owner: root
+          group: root
+   

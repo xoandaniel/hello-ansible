@@ -1,0 +1,11 @@
+
+- hosts: all
+  become: true
+  tasks:
+    - name: Debian tasks
+      ansible.builtin.include_tasks: hello-playbook-debian.yml
+      when: ansible_facts['os_family'] == 'Debian'
+
+    - name: RedHat tasks
+      ansible.builtin.include_tasks: hello-playbook-redhat.ymal
+      when: ansible_facts['os_family'] == 'RedHat'
