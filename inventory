@@ -6,3 +6,12 @@ debian
 
 [redhats]
 redhat
+
+[webservers]
+debian
+fedora
+
+[dbservers]
+debian
+fedora
+
