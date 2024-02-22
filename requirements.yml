@@ -1,0 +1,3 @@
+- src: git@github.com:xoandaniel/bootstrap_role.git
+  name: bootstrap
+  scm: git
