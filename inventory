@@ -9,9 +9,9 @@ redhat
 
 [webservers]
 debian
-fedora
+redhat
 
 [dbservers]
 debian
-fedora
+redhat
 
